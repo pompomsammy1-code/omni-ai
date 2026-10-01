@@ -6,6 +6,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Health check endpoint for Fly.io
+app.get('/', (req, res) => {
+    res.send('OmniAI Proxy Server is running!');
+});
+
+// Proxy route for chat completion requests
 app.post('/api/chat', async (req, res) => {
     try {
         const userPrompt = req.body.prompt;
